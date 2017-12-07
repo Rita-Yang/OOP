@@ -12,7 +12,7 @@ class PlasticCup{
         echo "<p>使用杯子</p>";
     }
 }
-class Starbucks extends PlasticCup
+class Starbucks
 {
     private $plasticCup;
 
