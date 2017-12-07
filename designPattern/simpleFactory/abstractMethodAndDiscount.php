@@ -28,7 +28,6 @@ class openingMinus extends abstractMethodAndDiscount{
         else
             return 0;
     }
-
 }
 
 class openingMultiply extends abstractMethodAndDiscount{
@@ -48,5 +47,4 @@ class openingMultiply extends abstractMethodAndDiscount{
         else
             return 0;
     }
-
 }

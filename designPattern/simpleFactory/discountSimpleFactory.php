@@ -21,6 +21,5 @@ class discountSimpleFactory
                 return 0;
                 break;
         }
-
     }
 }
