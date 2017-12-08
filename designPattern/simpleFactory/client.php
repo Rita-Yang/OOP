@@ -6,6 +6,7 @@
  * Time: 下午10:29
  */
 
+include  "abstractMethodAndDiscount.php";
 include "discountSimpleFactory.php";
 
 $item = "桌曆";
