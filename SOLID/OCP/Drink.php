@@ -52,4 +52,5 @@ class beverages{
 }
 //Client
 $starbucks = new beverages(new GlassCup());
+echo "<p>===========</p>";
 $lgarashi = new beverages(new GreenCup());
