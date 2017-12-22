@@ -6,7 +6,7 @@
  * Time: 下午10:07
  */
 
-include "News.php";
+include "Products.php";
 include "Audio.php";
 
 class productList{
