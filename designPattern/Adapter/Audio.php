@@ -16,11 +16,11 @@ class Audio
 
     public function loadAudioData()
     {
-        $this->title = "The Speed";
+        $this->title = "TOP SEED";
         $this->composer = "Woolliment Staff";
         $this->writer = "Nam Woo Hyun";
         $this->singer = "infinite";
-        $this->price = "564";
+        $this->price = "678";
     }
     public function getTitle()
     {
