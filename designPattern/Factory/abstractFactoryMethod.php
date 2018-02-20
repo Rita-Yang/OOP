@@ -25,7 +25,7 @@ class koreanFactory extends abstractFactoryMethod{
                 $this->htmlStr = new koreanHotSection();
                 break;
             default:
-                echo 'error section';
+//                echo 'default section';
                 break;
         }
 

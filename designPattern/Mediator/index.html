@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>簡易測試登入頁</title>
+</head>
+<body>
+<form action="post">
+    <p>
+        <label for="name">帳號：</label>
+        <input type="text" name="name" id="name" placeholder="請輸入帳號">
+    </p>
+    <p>
+        <label for="pwd">密碼：</label>
+        <input type="password" name="pwd" id="pwd" placeholder="請輸入密碼">
+    </p>
+    <button id="loginBtn" disabled>登入</button>
+</form>
+<script
+        src="http://code.jquery.com/jquery-3.3.1.js"
+        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+        crossorigin="anonymous"></script>
+<script>
+    var name;
+    var pwd;
+    $('#name').keyup(function(){
+        name = $(this).val();
+        $.post('client.php', {name: name, pwd: pwd}, function(data){
+            if(data == 'true')
+                $('#loginBtn').removeAttr('disabled');
+            else
+                $('#loginBtn').attr('disabled', 'false');
+        }, 'json');
+    });
+    $('#pwd').keyup(function(){
+        pwd = $(this).val();
+        $.post('client.php', {name: name, pwd: pwd}, function(data){
+            if(data == 'true')
+                $('#loginBtn').removeAttr('disabled');
+            else
+                $('#loginBtn').attr('disabled', 'false');
+        }, 'json');
+    });
+</script>
+</body>
+</html>
