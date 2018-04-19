@@ -449,7 +449,7 @@ return array(
     'PharIo\\Version\\VersionNumber' => $vendorDir . '/phar-io/version/src/VersionNumber.php',
     'SebastianBergmann\\CodeCoverage\\CodeCoverage' => $vendorDir . '/phpunit/php-code-coverage/src/CodeCoverage.php',
     'SebastianBergmann\\CodeCoverage\\CoveredCodeNotExecutedException' => $vendorDir . '/phpunit/php-code-coverage/src/Exception/CoveredCodeNotExecutedException.php',
-    'SebastianBergmann\\CodeCoverage\\Driver\\Driver' => $vendorDir . '/phpunit/php-code-coverage/src/Driver/Driver.php',
+    'SebastianBergmann\\CodeCoverage\\Driver\\Driver' => $vendorDir . '/phpunit/php-code-coverage/src/Driver/ClockObserver2.php',
     'SebastianBergmann\\CodeCoverage\\Driver\\HHVM' => $vendorDir . '/phpunit/php-code-coverage/src/Driver/HHVM.php',
     'SebastianBergmann\\CodeCoverage\\Driver\\PHPDBG' => $vendorDir . '/phpunit/php-code-coverage/src/Driver/PHPDBG.php',
     'SebastianBergmann\\CodeCoverage\\Driver\\Xdebug' => $vendorDir . '/phpunit/php-code-coverage/src/Driver/Xdebug.php',
