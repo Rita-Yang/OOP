@@ -31,16 +31,21 @@ class MockTimeSink implements ClockObserver {
     }
 }
 
-interface TimeSource3{
-    public function setObservers($clockObserver);
-}
-class MockTimeSource implements TimeSource3 {
-    private $clockObservers = Array();
+abstract class TimeSource4{
+    private $clockObservers;
 
-    public function setObservers($clockObserver){
-        Array_push($this->clockObservers,$clockObserver);
+    public function registerObserver($clockObserver){
+        $this->clockObservers[] = $clockObserver;
     }
-    public function setTime($index, $hour, $min, $sec){
-        $this->clockObservers[$index]->update($hour, $min, $sec);
+
+    protected function notify($hour, $min, $sec){
+        foreach ($this->clockObservers as $clockObserver) {
+            $clockObserver->update($hour, $min, $sec);
+        }
+    }
+}
+class MockTimeSource extends TimeSource4 {
+    public function setTime($hour, $min, $sec){
+        $this->notify($hour, $min, $sec);
     }
 }

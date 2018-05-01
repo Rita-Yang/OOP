@@ -12,19 +12,22 @@ use PHPUnit\Framework\TestCase;
 
 class ClockExample2_3Test extends TestCase
 {
-    public function testClockDriver() {
-        $timeSource = new MockTimeSource();
-        $timeSink = new MockTimeSink();
-        //$clockDriver = new ClockDriver($timeSource, $timeSink);
-        $timeSource->setObserver($timeSink);
+    protected $timeSource;
+    protected $timeSink;
 
-        $timeSource->setTime(15,30,50);
-        $this->assertEquals(15, $timeSink->getHour());
-        $this->assertEquals(30, $timeSink->getMin());
-        $this->assertEquals(50, $timeSink->getSec());
-        $timeSource->setTime(4,5,6);
-        $this->assertEquals(4, $timeSink->getHour());
-        $this->assertEquals(5, $timeSink->getMin());
-        $this->assertEquals(6, $timeSink->getSec());
+    protected function setUp(){
+        $this->timeSource = new MockTimeSource();
+        $this->timeSink = new MockTimeSink();
+        $this->timeSource->setObserver($this->timeSink);
+    }
+    public function testClockTime() {
+        $this->timeSource->setTime(15,30,50);
+        $this->assertEquals(15, $this->timeSink->getHour());
+        $this->assertEquals(30, $this->timeSink->getMin());
+        $this->assertEquals(50, $this->timeSink->getSec());
+        $this->timeSource->setTime(4,5,6);
+        $this->assertEquals(4, $this->timeSink->getHour());
+        $this->assertEquals(5, $this->timeSink->getMin());
+        $this->assertEquals(6, $this->timeSink->getSec());
     }
 }
