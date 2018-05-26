@@ -6,6 +6,11 @@
  * Time: 下午4:06
  */
 
+//列出1到100
+//3的倍數後面印Fizz
+//5的倍數後面印Buzz
+//同時是3和5的倍數後面印FizzBuzz
+
 require 'FizzBuzz.php';
 
 use PHPUnit\Framework\TestCase;
