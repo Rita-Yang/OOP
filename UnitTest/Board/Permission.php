@@ -5,7 +5,6 @@
  * Date: 2018/7/13
  * Time: 上午8:23
  */
-require "MockMember.php";
 
 class Permission
 {
@@ -31,6 +30,7 @@ class Permission
 
     public function getPermissionID()
     {
+        $this->mockMember = new MockMember();
         $this->permissionID = $this->mockMember->getLevel($this->board, $this->memberID);
         return $this->permissionID;
     }
@@ -38,9 +38,13 @@ class Permission
     public function getCreatePermission()
     {
 
-        switch($this->permissionID)
+        switch($this->getPermissionID())
         {
-            case 1 || 2:
+            case 1:
+                //開放新增文章按鈕
+                return "新增文章";
+                break;
+            case 2:
                 //開放新增文章按鈕
                 return "新增文章";
                 break;
@@ -56,7 +60,7 @@ class Permission
 
     public function getEditPermission()
     {
-        switch($this->permissionID)
+        switch($this->getPermissionID())
         {
             case 1:
                 //開放所有修改文章按鈕
@@ -78,7 +82,7 @@ class Permission
 
     public function getDeletePermission()
     {
-        switch($this->permissionID)
+        switch($this->getPermissionID())
         {
             case 1:
                 //開放刪除文章按鈕
@@ -100,7 +104,7 @@ class Permission
 
     public function getBlockPermission()
     {
-        switch($this->permissionID)
+        switch($this->getPermissionID())
         {
             case 1:
                 //開啟設定水桶功能

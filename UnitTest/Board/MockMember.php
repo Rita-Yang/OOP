@@ -22,9 +22,10 @@ class MockMember
             "mid_4" => 1
         )
     );
-    public function setMember($board, $memberID, $level)
+
+    public function setLevel($board, $memberID, $level)
     {
-        array_push($this->memberArray[$board][$memberID],$level);
+        $this->memberArray[$board][$memberID] = $level;
     }
 
     public function getLevel($board, $memberID)

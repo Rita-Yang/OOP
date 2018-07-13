@@ -8,6 +8,8 @@
 
 require 'MockMember.php';
 require 'Permission.php';
+require 'MockArticle.php';
+require 'Block.php';
 
 //製作討論區
 //---------
@@ -18,11 +20,9 @@ require 'Permission.php';
 
 use PHPUnit\Framework\TestCase;
 
-class MsgBoardTest extends TestCase
+class BoardTest extends TestCase
 {
-    private $mockMember;
     private $permission;
-    private $mockArticle;
     private $block;
 
     public function setUp()

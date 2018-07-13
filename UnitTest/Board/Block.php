@@ -6,7 +6,6 @@
  * Time: 上午9:17
  */
 
-require "MockMember.php";
 
 class Block
 {
@@ -28,7 +27,7 @@ class Block
 
     public function doBlock($memberID, $days)
     {
-        $this->mockMember->setMember($this->board, $memberID, 3);
+        $this->mockMember->setLevel($this->board, $memberID, 3);
         $this->startDay = new DateTime('now');
         $this->day = new DateInterval('P'.$days.'D');
         $this->startDay->add($this->day);
@@ -38,7 +37,7 @@ class Block
     public function doRecover($memberID)
     {
         if($this->endDay == new DateTime('now')){
-            $this->mockMember->setMember($this->board, $memberID, 2);
+            $this->mockMember->setLevel($this->board, $memberID, 2);
         }
     }
 

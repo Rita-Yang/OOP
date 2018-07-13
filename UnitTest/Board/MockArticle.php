@@ -6,8 +6,6 @@
  * Time: 上午8:33
  */
 
-require "Permission.php";
-
 class MockArticle
 {
     private $articleArray = array(
