@@ -30,6 +30,7 @@ class MockMember
 
     public function getLevel($board, $memberID)
     {
-        return $this->memberArray[$board][$memberID];
+        $level = $this->memberArray[$board][$memberID];
+        return $level;
     }
 }

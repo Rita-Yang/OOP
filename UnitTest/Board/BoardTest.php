@@ -22,6 +22,8 @@ use PHPUnit\Framework\TestCase;
 
 class BoardTest extends TestCase
 {
+    private $mockMember;
+    private $mockArticle;
     private $permission;
     private $block;
 
@@ -29,7 +31,7 @@ class BoardTest extends TestCase
     {
         $this->mockMember = new MockMember();
         $this->permission = new Permission($this->mockMember);
-        $this->mockArticle = new MockArticle($this->permission);
+        $this->mockArticle = new MockArticle($this->mockMember);
         $this->block = new Block($this->mockMember);
     }
 
@@ -66,13 +68,13 @@ class BoardTest extends TestCase
     {
         $this->mockArticle->setBoard("woman");
         $this->mockArticle->setTitle("title1");
-        $this->mockArticle->setAuthor("mid_2");
+        $this->mockArticle->setAuthorID("mid_2");
         $this->mockArticle->setContent("content1");
         $this->assertEquals("success", $this->mockArticle->create("aid_1"));
 
         $this->mockArticle->setBoard("man");
         $this->mockArticle->setTitle("title1");
-        $this->mockArticle->setAuthor("mid_1");
+        $this->mockArticle->setAuthorID("mid_1");
         $this->mockArticle->setContent("content1");
         $this->assertEquals("fail", $this->mockArticle->create("aid_2"));
     }
@@ -81,19 +83,19 @@ class BoardTest extends TestCase
     {
         $this->mockArticle->setBoard("woman");
         $this->mockArticle->setTitle("title1");
-        $this->mockArticle->setUser("mid_1");
+        $this->mockArticle->setUserID("mid_1");
         $this->mockArticle->setContent("content1");
         $this->assertEquals("success 1", $this->mockArticle->edit("aid_1"));
 
         $this->mockArticle->setBoard("woman");
         $this->mockArticle->setTitle("title1");
-        $this->mockArticle->setUser("mid_2");
+        $this->mockArticle->setUserID("mid_2");
         $this->mockArticle->setContent("content1");
         $this->assertEquals("success 2", $this->mockArticle->edit("aid_1"));
 
         $this->mockArticle->setBoard("man");
         $this->mockArticle->setTitle("title1");
-        $this->mockArticle->setUser("mid_1");
+        $this->mockArticle->setUserID("mid_1");
         $this->mockArticle->setContent("content1");
         $this->assertEquals("fail", $this->mockArticle->edit("aid_2"));
     }
@@ -101,11 +103,11 @@ class BoardTest extends TestCase
     public function testDeleteArticle()
     {
         $this->mockArticle->setBoard("woman");
-        $this->mockArticle->setUser("mid_1");
+        $this->mockArticle->setUserID("mid_1");
         $this->assertEquals("success 1", $this->mockArticle->delete("aid_1"));
 
         $this->mockArticle->setBoard("man");
-        $this->mockArticle->setUser("mid_1");
+        $this->mockArticle->setUserID("mid_1");
         $this->assertEquals("fail", $this->mockArticle->delete("aid_2"));
     }
 

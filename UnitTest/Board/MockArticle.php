@@ -35,16 +35,16 @@ class MockArticle
             )
         )
     );
-    private $permission;
+    private $mockMember;
     private $board;
     private $title;
-    private $author;
-    private $user;
+    private $authorID;
+    private $userID;
     private $content;
 
-    public function __construct(Permission $permission)
+    public function __construct(MockMember $mockMember)
     {
-        $this->permission = $permission;
+        $this->mockMember = $mockMember;
     }
 
     public function setBoard($board)
@@ -57,14 +57,14 @@ class MockArticle
         $this->title = $title;
     }
 
-    public function setAuthor($author)
+    public function setAuthorID($authorID)
     {
-        $this->author = $author;
+        $this->authorID = $authorID;
     }
 
-    public function setUser($user)
+    public function setUserID($userID)
     {
-        $this->user = $user;
+        $this->userID = $userID;
     }
 
     public function setContent($content)
@@ -74,11 +74,12 @@ class MockArticle
 
     public function create($aid)
     {
-        if($this->permission->getPermissionID == 1 || $this->permission->getPermissionID == 2) {
+        $userLevel = $this->mockMember->getLevel($this->board, $this->authorID);
+        if($userLevel == 1 || $userLevel == 2) {
             //新增文章
             array_push($this->articleArray[$this->board][$aid], array(
                 "title" => $this->title,
-                "author" => $this->author,
+                "authorID" => $this->authorID,
                 "content" => $this->content
             ));
             return "success";
@@ -91,12 +92,14 @@ class MockArticle
 
     public function edit($aid)
     {
-        if ($this->permission->getPermissionID == 1) {
+        $this->authorID = $this->articleArray[$this->board][$aid]['author'];
+        $userLevel = $this->mockMember->getLevel($this->board, $this->userID);
+        if ($userLevel == 1) {
             //修改$aid文章
             $this->articleArray[$this->board][$aid]["title"] = $this->title;
             $this->articleArray[$this->board][$aid]["content"] = $this->content;
             return "success 1";
-        } else if ($this->permission->getPermissionID == 2 && $this->author == $this->user){
+        } else if ($userLevel == 2 && $this->userID == $this->authorID){
             //修改$aid文章
             $this->articleArray[$this->board][$aid]["title"] = $this->title;
             $this->articleArray[$this->board][$aid]["content"] = $this->content;
@@ -110,10 +113,11 @@ class MockArticle
 
     public function delete($aid)
     {
-        if ($this->permission->getPermissionID == 1) {
+        $userLevel = $this->mockMember->getLevel($this->board, $this->userID);
+        if ($userLevel == 1) {
             //刪除$aid文章
             return "success 1";
-        } else if ($this->permission->getPermissionID == 2 && $this->author == $this->user){
+        } else if ($userLevel == 2 && $this->authorID == $this->userID){
             //刪除$aid文章
             return "success 2";
         }else {
